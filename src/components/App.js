@@ -1,31 +1,28 @@
 
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import './../styles/App.css';
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [data, setdata] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then(response => response.json())
-      .then((res) => {
-        // console.log(res);
-        setData(res)
-      })
-      .catch((error) => {
-        console.log(error);
-        setdata(`An error occurred: ${error}`)
-      })
-  }, [])
+    function fetchData() {
+      fetch("https://dummyjson.com/products")
+        .then((res) => (res.json()))
+        .then((res) => { setdata(res) })
+        .catch((err) => { console.log(err); setdata(`An error occurred: ${err}`) })
+    }
+    fetchData();
+  }, []);
 
   if (!data) {
     return <p>Loading product data...</p>;
   }
+
   return (
-    <div>
-        {/* Do not remove the main div */}
-        <h1>Data Fetched from API</h1>
-        <pre className="data">{JSON.stringify(data,null,2)}</pre>
+    <div className="app">
+      <h1>Data Fetched from API</h1>
+      <pre className="data">{JSON.stringify(data, null, 2)}</pre>
     </div>
   )
 }
