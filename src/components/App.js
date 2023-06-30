@@ -14,7 +14,7 @@ const App = () => {
       })
       .catch((error) => {
         console.log(error);
-        setdata(`An error occurred: ${err}`)
+        setdata(`An error occurred: ${error}`)
       })
   }, [])
 
