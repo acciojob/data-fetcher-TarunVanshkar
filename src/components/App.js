@@ -12,7 +12,10 @@ const App = () => {
         // console.log(res);
         setData(res)
       })
-      .catch(err => console.log(err))
+      .catch((error) => {
+        console.log(error);
+        setdata(`An error occurred: ${err}`)
+      })
   }, [])
 
   if (!data) {
